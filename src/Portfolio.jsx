@@ -39,25 +39,6 @@ const SKILLS = {
 
 const EXPERIENCES = [
   {
-    company: "Groupe Y-KL",
-    role: "Développeur Applications & Mobile",
-    type: "Alternance",
-    period: "Janvier 2025 — Juillet 2025",
-    location: "France",
-    color: "#4F46E5",
-    logo: "YKL",
-    highlights: [
-      "Développement de l'application mobile de l'entreprise en Flutter",
-      "Création du site web de l'entreprise en React",
-      "Analyse des besoins métiers et conception de solutions digitales",
-      "Automatisation des processus métiers via Power Automate",
-      "Conception de maquettes Figma pour l'application mobile",
-      "Formation et accompagnement des utilisateurs",
-    ],
-    stack: ["Flutter", "React", "Figma", "Power Platform", "Microsoft 365"],
-    link: "https://y-kl.fr",
-  },
-  {
     company: "Debytes",
     role: "Développeur Full Stack",
     type: "Stage",
@@ -73,6 +54,25 @@ const EXPERIENCES = [
       "Optimisation des performances et de l'expérience utilisateur",
     ],
     stack: ["React", "Node.js", "NLP / Matching", "API REST", "PostgreSQL"],
+  },
+  {
+    company: "Groupe Y-KL",
+    role: "Développeur Applications & Mobile",
+    type: "Stage",
+    period: "Janvier 2025 — Juillet 2025",
+    location: "France",
+    color: "#4F46E5",
+    logo: "YKL",
+    highlights: [
+      "Développement de l'application mobile de l'entreprise en Flutter",
+      "Création du site web de l'entreprise en React",
+      "Analyse des besoins métiers et conception de solutions digitales",
+      "Automatisation des processus métiers via Power Automate",
+      "Conception de maquettes Figma pour l'application mobile",
+      "Formation et accompagnement des utilisateurs",
+      ],
+    stack: ["Flutter", "React", "Figma", "Power Platform", "Microsoft 365"],
+    link: "https://y-kl.fr",
   },
   {
     company: "Krossbiz",
@@ -394,38 +394,10 @@ const NavBar = memo(function NavBar({ active, onNav }) {
 });
 
 const HeroSection = memo(function HeroSection({ sectionRef }) {
-  const [typed, setTyped] = useState("");
-  const roles = ["Développeur Full Stack", "Mobile Developer", "Power Platform Dev", "UI/UX Designer"];
-  const [roleIdx, setRoleIdx] = useState(0);
-
-  useEffect(() => {
-    let i = 0;
-    const role = roles[roleIdx];
-    const interval = setInterval(() => {
-      setTyped(role.slice(0, i + 1));
-      i++;
-      if (i >= role.length) {
-        clearInterval(interval);
-        setTimeout(() => {
-          const erase = setInterval(() => {
-            setTyped((prev) => {
-              if (prev.length === 0) {
-                clearInterval(erase);
-                setRoleIdx((r) => (r + 1) % roles.length);
-                return "";
-              }
-              return prev.slice(0, -1);
-            });
-          }, 40);
-        }, 2000);
-      }
-    }, 80);
-    return () => clearInterval(interval);
-  }, [roleIdx]);
-
   return (
     <section
       ref={sectionRef}
+      className="hero-section"
       style={{
         minHeight: "100vh",
         display: "flex",
@@ -452,24 +424,6 @@ const HeroSection = memo(function HeroSection({ sectionRef }) {
       />
 
       <div style={{ position: "relative", maxWidth: 800 }}>
-        <div
-          style={{
-            display: "inline-block",
-            background: "rgba(99,102,241,0.1)",
-            border: "1px solid rgba(99,102,241,0.3)",
-            borderRadius: 100,
-            padding: "6px 18px",
-            marginBottom: 24,
-            color: "#818CF8",
-            fontSize: 13,
-            fontFamily: "'Space Grotesk', sans-serif",
-            letterSpacing: 1,
-            textTransform: "uppercase",
-          }}
-        >
-          Disponible pour de nouveaux projets
-        </div>
-
         <h1
           style={{
             fontSize: "clamp(40px, 7vw, 76px)",
@@ -496,33 +450,22 @@ const HeroSection = memo(function HeroSection({ sectionRef }) {
 
         <div
           style={{
-            height: 40,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            marginBottom: 24,
+            marginBottom: 18,
           }}
         >
           <span
             style={{
-              fontSize: 20,
-              color: "rgba(255,255,255,0.6)",
+              fontSize: 18,
+              color: "rgba(255,255,255,0.62)",
               fontFamily: "'Space Grotesk', sans-serif",
-              fontWeight: 400,
+              fontWeight: 500,
+              letterSpacing: "-0.2px",
             }}
           >
-            {typed}
-            <span
-              style={{
-                display: "inline-block",
-                width: 2,
-                height: 22,
-                background: "#6366F1",
-                marginLeft: 2,
-                verticalAlign: "middle",
-                animation: "blink 1s step-end infinite",
-              }}
-            />
+            Développeur Full Stack & Mobile
           </span>
         </div>
 
@@ -537,7 +480,7 @@ const HeroSection = memo(function HeroSection({ sectionRef }) {
             fontFamily: "'Space Grotesk', sans-serif",
           }}
         >
-          Master 2 Expert Digital — Architecte Web & Mobile. Je conçois des applications complètes, du design Figma
+          Master en Expert Digital — Architecte Web & Mobile. Je conçois des applications complètes, du design Figma
           au déploiement cloud, en passant par le mobile Flutter.
         </p>
 
@@ -611,21 +554,8 @@ const HeroSection = memo(function HeroSection({ sectionRef }) {
           </a>
         </div>
 
-        <div style={{ marginTop: 56, display: "flex", gap: 40, justifyContent: "center", flexWrap: "wrap" }}>
-          {[
-            { n: "3+", label: "Ans d'expérience" },
-            { n: "10+", label: "Projets livrés" },
-            { n: "5+", label: "Technologies maîtrisées" },
-          ].map(({ n, label }) => (
-            <div key={label} style={{ textAlign: "center" }}>
-              <div style={{ fontSize: 32, fontWeight: 700, color: "#fff", fontFamily: "'Space Grotesk', sans-serif" }}>
-                {n}
-              </div>
-              <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", fontFamily: "'Space Grotesk', sans-serif" }}>
-                {label}
-              </div>
-            </div>
-          ))}
+        <div style={{ marginTop: 34, color: "rgba(255,255,255,0.35)", fontSize: 13, fontFamily: "'Space Grotesk', sans-serif" }}>
+          Torcy, France · Disponible pour missions & CDI
         </div>
       </div>
     </section>
@@ -634,7 +564,7 @@ const HeroSection = memo(function HeroSection({ sectionRef }) {
 
 const AboutSection = memo(function AboutSection({ sectionRef }) {
   return (
-    <section ref={sectionRef} style={{ padding: "100px 2rem", maxWidth: 1100, margin: "0 auto" }}>
+    <section ref={sectionRef} className="section-pad" style={{ padding: "100px 2rem", maxWidth: 1100, margin: "0 auto" }}>
       <SectionTitle label="01" title="À propos" />
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
         <div>
@@ -1285,7 +1215,7 @@ const ProjectModal = memo(function ProjectModal({ project, onClose }) {
           </div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <div className="project-modal-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
           <div style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 12, padding: 20 }}>
             <div style={{ fontSize: 12, color: "rgba(239,68,68,0.7)", fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, marginBottom: 10, textTransform: "uppercase", letterSpacing: 0.5 }}>
               ⚠ Défis rencontrés
@@ -1704,16 +1634,15 @@ export default function Portfolio() {
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body { background: #080812; color: #fff; overflow-x: hidden; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #080812; }
-        ::-webkit-scrollbar-thumb { background: #6366F1; border-radius: 3px; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .hamburger { display: block !important; }
         }
         @media (max-width: 640px) {
           section > div { grid-template-columns: 1fr !important; }
+          .project-modal-two-col { grid-template-columns: 1fr !important; }
+          .hero-section { min-height: auto !important; padding-top: 92px !important; padding-bottom: 40px !important; }
+          .section-pad { padding-top: 64px !important; padding-bottom: 64px !important; }
         }
       `}</style>
 
@@ -1736,7 +1665,7 @@ export default function Portfolio() {
           fontFamily: "'Space Grotesk', sans-serif",
         }}
       >
-        © 2026 Ignace Ulrich Fotso Tamidem — Conçu & développé avec React
+        © 2026 Ulrich Fotso— Conçu & développé avec React
       </footer>
     </>
   );
