@@ -306,7 +306,7 @@ const NavBar = memo(function NavBar({ active, onNav }) {
       >
         <span
           style={{
-            fontFamily: "'Space Grotesk', sans-serif",
+            fontFamily: "'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
             fontWeight: 700,
             fontSize: 20,
             color: "#fff",
@@ -473,7 +473,7 @@ const HeroSection = memo(function HeroSection({ sectionRef }) {
         <h1
           style={{
             fontSize: "clamp(40px, 7vw, 76px)",
-            fontFamily: "'Clash Display', 'Space Grotesk', sans-serif",
+            fontFamily: "'Fraunces', 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
             fontWeight: 700,
             color: "#fff",
             lineHeight: 1.1,
