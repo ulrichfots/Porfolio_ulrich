@@ -435,7 +435,7 @@ const HeroSection = memo(function HeroSection({ sectionRef }) {
             letterSpacing: "-2px",
           }}
         >
-          Ignace Ulrich
+          Ulrich
           <br />
           <span
             style={{
@@ -444,7 +444,7 @@ const HeroSection = memo(function HeroSection({ sectionRef }) {
               WebkitTextFillColor: "transparent",
             }}
           >
-            Fotso Tamdem
+            Fotso
           </span>
         </h1>
 
