@@ -39,19 +39,19 @@ const SKILLS = {
 
 const EXPERIENCES = [
   {
-    company: "Debytes",
+    company: "DeBytes Ltd",
     role: "Développeur Full Stack",
     type: "Stage",
-    period: "Octobre 2025 — Mars 2026",
-    location: "France",
+    period: "Octobre 2025 — Avril 2026",
+    location: "Royaume Uni ( Remote )",
     color: "#0EA5E9",
     logo: "DB",
     highlights: [
-      "Développement du site web de l'entreprise",
-      "Conception d'un algorithme de matching CV / offres d'emploi",
-      "Développement de la logique de parsing et d'analyse sémantique de CV",
-      "Intégration d'API de jobboards pour la récupération des offres",
-      "Optimisation des performances et de l'expérience utilisateur",
+      "Conception et développement de fonctionnalités produit full stack (UI + API) pour la plateforme",
+      "Conception d'un algorithme de matching CV / offres d'emploi (scoring, pondération, itérations)",
+      "Développement d'un pipeline de parsing et d'analyse sémantique de CV (extraction, normalisation)",
+      "Intégration d'APIs de jobboards et gestion de la fiabilité (erreurs, retries, limites)",
+      "Optimisation des performances et de l'expérience utilisateur (temps de chargement, parcours)",
     ],
     stack: ["React", "Node.js", "NLP / Matching", "API REST", "PostgreSQL"],
   },
@@ -64,12 +64,12 @@ const EXPERIENCES = [
     color: "#4F46E5",
     logo: "YKL",
     highlights: [
-      "Développement de l'application mobile de l'entreprise en Flutter",
-      "Création du site web de l'entreprise en React",
-      "Analyse des besoins métiers et conception de solutions digitales",
-      "Automatisation des processus métiers via Power Automate",
-      "Conception de maquettes Figma pour l'application mobile",
-      "Formation et accompagnement des utilisateurs",
+      "Analyse des besoins métiers, cadrage des fonctionnalités et priorisation avec les équipes",
+      "Développement de l'application mobile Flutter (écrans, navigation, intégrations, qualité)",
+      "Automatisation de processus via Power Automate / Power Platform (gains de temps opérationnels)",
+      "Mise en place d'une approche qualité (tests manuels, recettes, corrections, suivi)",
+      "Conception UI/UX sur Figma pour cadrer les parcours avant implémentation",
+      "Développement du site vitrine en React (mise en production, responsive, maintenance)",
       ],
     stack: ["Flutter", "React", "Figma", "Power Platform", "Microsoft 365"],
     link: "https://y-kl.fr",
@@ -83,11 +83,11 @@ const EXPERIENCES = [
     color: "#10B981",
     logo: "KB",
     highlights: [
-      "Conception et développement d'une application web full stack",
-      "Développement d'API backend avec Node.js et Express",
-      "Intégration de paiements sécurisés avec Stripe",
-      "Gestion de bases de données MongoDB et Firebase",
-      "Architecture logicielle scalable",
+      "Conception et livraison d'une application web full stack (spécifications, dev, mise en ligne)",
+      "Développement d'APIs backend Node.js / Express et structuration des endpoints",
+      "Intégration de paiements Stripe (sécurisation, webhooks, gestion des statuts)",
+      "Modélisation et gestion des données (MongoDB / Firebase) + règles d'accès",
+      "Mise en place d'une architecture scalable et maintenable (modules, séparation des responsabilités)",
     ],
     stack: ["React", "Next.js", "Node.js", "MongoDB", "Stripe", "Firebase"],
   },
@@ -97,6 +97,7 @@ const PROJECTS = [
   {
     id: 1,
     title: "JobGenius",
+    category: "Produit",
     status: "En cours",
     statusColor: "#F59E0B",
     description:
@@ -117,6 +118,7 @@ const PROJECTS = [
   {
     id: 2,
     title: "Site Groupe Y-KL",
+    category: "Web",
     status: "Livré",
     statusColor: "#10B981",
     description:
@@ -137,6 +139,7 @@ const PROJECTS = [
   {
     id: 3,
     title: "Application Mobile Y-KL",
+    category: "Mobile",
     status: "Livré",
     statusColor: "#10B981",
     description:
@@ -155,11 +158,12 @@ const PROJECTS = [
   },
   {
     id: 4,
-    title: "Site Debytes",
+    title: "Site DeBytes Ltd",
+    category: "Web",
     status: "Livré",
     statusColor: "#10B981",
     description:
-      "Site institutionnel de l'entreprise Debytes, startup spécialisée dans les solutions RH digitales. Design moderne axé conversion.",
+      "Site institutionnel de l'entreprise DeBytes Ltd, startup spécialisée dans les solutions RH digitales. Design moderne axé conversion.",
     longDesc:
       "Développement du site de présentation de la startup, avec animations d'entrée, sections dynamiques et formulaires de contact intégrés.",
     tech: ["React", "Tailwind", "Node.js", "Animations"],
@@ -168,12 +172,13 @@ const PROJECTS = [
       "Conception d'un système de design custom avec une palette cohérente, typographie distinctive et animations légères.",
     icon: "💼",
     color: "#0EA5E9",
-    link: "https://debytes.ai/",
+    link: "https://debytes.io/",
     screenshots: [],
   },
   {
     id: 5,
     title: "Tirage au Sort",
+    category: "DevOps",
     status: "Livré",
     statusColor: "#10B981",
     description:
@@ -192,6 +197,7 @@ const PROJECTS = [
   {
     id: 6,
     title: "NEl'Agency — Site & Galerie",
+    category: "Dashboard",
     status: "En ligne",
     statusColor: "#10B981",
     description:
@@ -209,6 +215,7 @@ const PROJECTS = [
   {
     id: 7,
     title: "F2I — Projet perso",
+    category: "Web",
     status: "En ligne",
     statusColor: "#10B981",
     description: "Application web déployée (projet personnel).",
@@ -224,6 +231,7 @@ const PROJECTS = [
   {
     id: 8,
     title: "Auto-école Amenouvévé — Dashboard",
+    category: "Dashboard",
     status: "En ligne",
     statusColor: "#10B981",
     description: "Dashboard de gestion pour une auto-école.",
@@ -240,6 +248,7 @@ const PROJECTS = [
   {
     id: 9,
     title: "Oskmeat — Maquette",
+    category: "Maquette",
     status: "Maquette",
     statusColor: "#F59E0B",
     description: "Aperçu de maquette (UI) pour un projet web.",
@@ -254,14 +263,14 @@ const PROJECTS = [
 
 const EDUCATION = [
   {
-    degree: "Master 2 — Expert Digital",
+    degree: "Master — Expert Digital",
     school: "IEF2I — Vincennes",
     period: "2024 — 2025",
     option: "Architecte Web & Mobile",
     color: "#4F46E5",
   },
   {
-    degree: "Master 1 — Consultant en Développement Web & Mobile",
+    degree: "Bachelor — Consultant en Développement Web & Mobile",
     school: "IEF2I — Vincennes",
     period: "Obtenu Septembre 2024",
     option: "",
@@ -435,8 +444,7 @@ const HeroSection = memo(function HeroSection({ sectionRef }) {
             letterSpacing: "-2px",
           }}
         >
-          Ulrich
-          <br />
+          Ulrich{" "}
           <span
             style={{
               background: "linear-gradient(135deg, #6366F1, #8B5CF6, #A78BFA)",
@@ -577,9 +585,10 @@ const AboutSection = memo(function AboutSection({ sectionRef }) {
               fontFamily: "'Space Grotesk', sans-serif",
             }}
           >
-            Développeur Full Stack passionné, diplômé d'un{" "}
-            <strong style={{ color: "#818CF8" }}>Master 2 Expert Digital — Architecte Web & Mobile</strong> à l'IEF2I,
-            je conçois et déploie des applications web et mobiles complètes.
+            Développeur Full Stack, diplômé d'un{" "}
+            <strong style={{ color: "#818CF8" }}>Master Expert Digital — Architecte Web & Mobile</strong> à l'IEF2I,
+            je conçois et déploie des applications web et mobiles de bout en bout, avec un focus sur la qualité,
+            la performance et l'expérience utilisateur.
           </p>
           <p
             style={{
@@ -590,9 +599,9 @@ const AboutSection = memo(function AboutSection({ sectionRef }) {
               fontFamily: "'Space Grotesk', sans-serif",
             }}
           >
-            Mon parcours couvre l'ensemble de la chaîne de développement : du design UI/UX sur{" "}
-            <strong style={{ color: "#818CF8" }}>Figma</strong> au déploiement sur des infrastructures cloud (AWS, VPS
-            OVH), en passant par le développement frontend en React/Next.js et mobile en Flutter.
+            Côté développement, je maîtrise l'implémentation frontend (React / Next.js) et la construction de services
+            backend (Node.js / APIs), ainsi que le déploiement (Docker, CI/CD, VPS/Cloud). J'accorde une attention
+            particulière à la maintenabilité (design system, composants) et aux performances (chargement, UX).
           </p>
           <p
             style={{
@@ -604,6 +613,18 @@ const AboutSection = memo(function AboutSection({ sectionRef }) {
           >
             Actuellement en développement de <strong style={{ color: "#818CF8" }}>JobGenius</strong>, une plateforme
             intelligente de matching CV / offres d'emploi utilisant le traitement du langage naturel.
+          </p>
+          <p
+            style={{
+              fontSize: 17,
+              color: "rgba(255,255,255,0.7)",
+              lineHeight: 1.8,
+              marginTop: 20,
+              fontFamily: "'Space Grotesk', sans-serif",
+            }}
+          >
+            En complément, je conçois aussi des interfaces sur <strong style={{ color: "#818CF8" }}>Figma</strong> pour
+            cadrer rapidement une direction UI/UX avant l'implémentation.
           </p>
           <div style={{ marginTop: 32, display: "flex", gap: 12 }}>
             <a href="https://www.linkedin.com/in/ulrich-fotso-616829254?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BgQUGpmL%2BSgivZvY%2BNDJusw%3D%3D" target="_blank" rel="noreferrer" style={socialBtn}>
@@ -617,6 +638,10 @@ const AboutSection = memo(function AboutSection({ sectionRef }) {
             </a>
             <a
               href="mailto:ulrichfotso10@gmail.com"
+              onPointerUp={(e) => {
+                // iOS Safari can keep :focus after tap
+                setTimeout(() => e.currentTarget.blur?.(), 0);
+              }}
               style={{
                 ...socialBtn,
                 background: "rgba(99,102,241,0.15)",
@@ -820,7 +845,7 @@ const SkillsSection = memo(function SkillsSection({ sectionRef }) {
           ))}
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }}>
+        <div className="skills-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }}>
           <div>
             {SKILLS[activeTab].map((s) => (
               <SkillBar key={s.name} name={s.name} level={s.level} />
@@ -873,8 +898,20 @@ const ExperienceSection = memo(function ExperienceSection({ sectionRef }) {
   return (
     <section ref={sectionRef} style={{ padding: "100px 2rem", maxWidth: 1100, margin: "0 auto" }}>
       <SectionTitle label="03" title="Expériences" />
-      <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 32 }}>
+      <div className="experience-grid" style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 32 }}>
         <div>
+          <div
+            className="experience-hint"
+            style={{
+              fontSize: 12,
+              color: "rgba(255,255,255,0.35)",
+              fontFamily: "'Space Grotesk', sans-serif",
+              marginBottom: 10,
+              display: "none",
+            }}
+          >
+            Touchez une expérience pour afficher le détail.
+          </div>
           {EXPERIENCES.map((e, i) => (
             <button
               key={e.company}
@@ -893,8 +930,22 @@ const ExperienceSection = memo(function ExperienceSection({ sectionRef }) {
                 transition: "all 0.2s",
               }}
             >
-              <div style={{ fontWeight: 600, color: active === i ? "#fff" : "rgba(255,255,255,0.5)", fontFamily: "'Space Grotesk', sans-serif", fontSize: 14 }}>
-                {e.company}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+                <div style={{ fontWeight: 600, color: active === i ? "#fff" : "rgba(255,255,255,0.5)", fontFamily: "'Space Grotesk', sans-serif", fontSize: 14 }}>
+                  {e.company}
+                </div>
+                <div
+                  aria-hidden="true"
+                  style={{
+                    color: active === i ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.25)",
+                    fontSize: 18,
+                    lineHeight: 1,
+                    transform: active === i ? "translateX(2px)" : "none",
+                    transition: "transform 0.2s ease",
+                  }}
+                >
+                  ›
+                </div>
               </div>
               <div style={{ fontSize: 12, color: active === i ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.25)", fontFamily: "'Space Grotesk', sans-serif", marginTop: 2 }}>
                 {e.period}
@@ -1030,7 +1081,7 @@ const ExperienceSection = memo(function ExperienceSection({ sectionRef }) {
   );
 });
 
-const ProjectCard = memo(function ProjectCard({ project, onOpen }) {
+const ProjectCard = memo(function ProjectCard({ project, onOpen, numberLabel }) {
   return (
     <div
       onClick={() => onOpen(project)}
@@ -1067,7 +1118,37 @@ const ProjectCard = memo(function ProjectCard({ project, onOpen }) {
         }}
       />
 
+      <div
+        style={{
+          position: "absolute",
+          top: 16,
+          left: 16,
+          fontSize: 12,
+          letterSpacing: 2,
+          color: "rgba(255,255,255,0.55)",
+          fontFamily: "'Space Grotesk', sans-serif",
+          textTransform: "uppercase",
+          userSelect: "none",
+        }}
+      >
+        {numberLabel}
+      </div>
+
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
+        <span
+          style={{
+            background: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(255,255,255,0.10)",
+            color: "rgba(255,255,255,0.65)",
+            padding: "3px 10px",
+            borderRadius: 100,
+            fontSize: 11,
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontWeight: 600,
+          }}
+        >
+          {project.category ?? "Autre"}
+        </span>
         <span
           style={{
             background: `${project.statusColor}22`,
@@ -1370,14 +1451,55 @@ const ProjectModal = memo(function ProjectModal({ project, onClose }) {
 
 const ProjectsSection = memo(function ProjectsSection({ sectionRef }) {
   const [selected, setSelected] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("Tous");
+
+  const categories = useMemo(() => {
+    const set = new Set();
+    for (const p of PROJECTS) set.add(p.category ?? "Autre");
+    return ["Tous", ...Array.from(set)];
+  }, []);
+
+  const filteredProjects = useMemo(() => {
+    if (activeCategory === "Tous") return PROJECTS;
+    return PROJECTS.filter((p) => (p.category ?? "Autre") === activeCategory);
+  }, [activeCategory]);
 
   return (
     <section ref={sectionRef} id="projets" style={{ padding: "100px 2rem" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <SectionTitle label="04" title="Projets" />
+
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 24 }}>
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => setActiveCategory(cat)}
+              style={{
+                background: activeCategory === cat ? "rgba(255,255,255,0.10)" : "rgba(255,255,255,0.04)",
+                border: `1px solid ${activeCategory === cat ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.08)"}`,
+                color: activeCategory === cat ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.6)",
+                padding: "8px 14px",
+                borderRadius: 999,
+                cursor: "pointer",
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 12,
+                fontWeight: 600,
+              }}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 20 }}>
-          {PROJECTS.map((p) => (
-            <ProjectCard key={p.id} project={p} onOpen={setSelected} />
+          {filteredProjects.map((p, idx) => (
+            <ProjectCard
+              key={p.id}
+              project={p}
+              onOpen={setSelected}
+              numberLabel={String(idx + 1).padStart(2, "0")}
+            />
           ))}
         </div>
       </div>
@@ -1440,16 +1562,24 @@ const ContactSection = memo(function ContactSection({ sectionRef }) {
         <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
           <a
             href="mailto:ulrichfotso10@gmail.com"
-            onClick={() => setSent(true)}
+            onClick={(e) => {
+              setSent(true);
+              // Avoid "stuck" focus highlight on mobile after tap
+              setTimeout(() => e.currentTarget.blur?.(), 0);
+            }}
+            onPointerUp={(e) => {
+              setTimeout(() => e.currentTarget.blur?.(), 0);
+            }}
             style={{
-              background: "linear-gradient(135deg, #6366F1, #8B5CF6)",
-              color: "#fff",
+              background: "rgba(255,255,255,0.06)",
+              color: "rgba(255,255,255,0.85)",
               padding: "14px 32px",
               borderRadius: 12,
               textDecoration: "none",
               fontFamily: "'Space Grotesk', sans-serif",
               fontWeight: 600,
               fontSize: 15,
+              border: "1px solid rgba(255,255,255,0.12)",
             }}
           >
             Envoyer un email →
@@ -1634,9 +1764,16 @@ export default function Portfolio() {
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body { background: #080812; color: #fff; overflow-x: hidden; }
+        a, button { -webkit-tap-highlight-color: transparent; }
+        a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; box-shadow: none; }
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .hamburger { display: block !important; }
+        }
+        @media (max-width: 900px) {
+          .skills-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .experience-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .experience-hint { display: block !important; }
         }
         @media (max-width: 640px) {
           section > div { grid-template-columns: 1fr !important; }
