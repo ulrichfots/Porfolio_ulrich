@@ -191,13 +191,13 @@ const PROJECTS = [
   },
   {
     id: 6,
-    title: "NEL Agency — Site & Galerie",
+    title: "NEl'Agency — Site & Galerie",
     status: "En ligne",
     statusColor: "#10B981",
     description:
       "Site vitrine + galerie d'événements. Pages galerie, ajout d'événements et dashboard d'administration.",
     longDesc:
-      "Projet personnel NEL Agency : site public (vitrine + galerie), pages dédiées à la galerie et à l'ajout d'événements, et un dashboard pour gérer les contenus (sans CMS).",
+      "Projet personnel NEl'Agency : site public (vitrine + galerie), pages dédiées à la galerie et à l'ajout d'événements, et un dashboard pour gérer les contenus (sans CMS).",
     tech: ["Web", "Dashboard"],
     challenges: "Structurer une expérience fluide entre site public, galerie et administration.",
     solutions: "Séparation claire des parcours (public vs admin) et pages dédiées.",
@@ -576,8 +576,8 @@ const HeroSection = memo(function HeroSection({ sectionRef }) {
             Me contacter
           </a>
           <a
-            href="/cv_CDI_ULRICH_FOTSO.pdf"
-            download="CV_Ulrich_Fotso.pdf"
+            href="/cv_ULRICH_FOTSO.pdf"
+            download="cv_ULRICH_FOTSO.pdf"
             style={{
               background: "rgba(255,255,255,0.06)",
               color: "rgba(255,255,255,0.85)",
@@ -1561,8 +1561,8 @@ const ContactSection = memo(function ContactSection({ sectionRef }) {
             GitLab
           </a>
           <a
-            href="/cv_CDI_ULRICH_FOTSO.pdf"
-            download="CV_Ulrich_Fotso.pdf"
+            href="/cv_ULRICH_FOTSO.pdf"
+            download="cv_ULRICH_FOTSO.pdf"
             style={{
               background: "rgba(255,255,255,0.06)",
               color: "rgba(255,255,255,0.85)",
