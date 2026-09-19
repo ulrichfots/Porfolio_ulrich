@@ -7,13 +7,18 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prebuild": "npm run sync:activity && npm run sync:contributions",
+    "sync:activity": "node scripts/fetch-git-activity.mjs",
+    "sync:contributions": "node scripts/fetch-git-contributions.mjs",
+    "sync:projects": "node scripts/sync-projects.mjs"
   },
   "dependencies": {
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.127.0",
     "@eslint/js": "^9.39.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

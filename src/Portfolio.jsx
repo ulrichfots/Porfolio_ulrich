@@ -1,4 +1,10 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import GitActivityBanner from "./components/GitActivityBanner.jsx";
+import GitContributionGraph from "./components/GitContributionGraph.jsx";
+import ProjectExtraLinks from "./components/ProjectExtraLinks.jsx";
+import generatedProjects from "./data/projects.generated.json";
+import { mergeProjects } from "./data/mergeProjects.js";
+import { RECENT_EXPERIENCES, RECENT_PROJECTS } from "./data/recentProjects.js";
 
 const NAV_LINKS = ["Accueil", "À propos", "Compétences", "Expériences", "Projets", "Contact"];
 
@@ -12,9 +18,11 @@ const SKILLS = {
   ],
   Backend: [
     { name: "Node.js / Express", level: 85 },
+    { name: "NestJS", level: 80 },
     { name: "Django / Flask", level: 70 },
     { name: "Symfony / PHP", level: 65 },
     { name: "REST API", level: 88 },
+    { name: "Swagger / OpenAPI", level: 80 },
   ],
   "Cloud & DevOps": [
     { name: "Docker / CI-CD", level: 78 },
@@ -26,6 +34,8 @@ const SKILLS = {
   ],
   "Bases de données": [
     { name: "PostgreSQL / MySQL", level: 82 },
+    { name: "Supabase", level: 78 },
+    { name: "Neon (Postgres serverless)", level: 76 },
     { name: "MongoDB / Firebase", level: 78 },
     { name: "Dataverse", level: 75 },
   ],
@@ -98,8 +108,8 @@ const PROJECTS = [
     id: 1,
     title: "JobGenius",
     category: "Produit",
-    status: "En cours",
-    statusColor: "#F59E0B",
+    status: "Livré",
+    statusColor: "#10B981",
     description:
       "Plateforme intelligente de matching entre candidats et offres d'emploi. L'algorithme analyse votre CV pour suggérer les meilleures opportunités correspondant à votre profil.",
     longDesc:
@@ -260,6 +270,10 @@ const PROJECTS = [
     screenshots: ["/maquette%20oskmeat/image.png"],
   },
 ];
+
+// Projets récents (saisis à la main) + projets manuels + projets générés par `npm run sync:projects`
+const ALL_PROJECTS = mergeProjects([...RECENT_PROJECTS, ...PROJECTS], generatedProjects.projects);
+const ALL_EXPERIENCES = [...RECENT_EXPERIENCES, ...EXPERIENCES];
 
 const EDUCATION = [
   {
@@ -566,6 +580,8 @@ const HeroSection = memo(function HeroSection({ sectionRef }) {
           Torcy, France · Disponible pour missions & CDI
         </div>
       </div>
+
+      <GitActivityBanner />
     </section>
   );
 });
@@ -611,7 +627,7 @@ const AboutSection = memo(function AboutSection({ sectionRef }) {
               fontFamily: "'Space Grotesk', sans-serif",
             }}
           >
-            Actuellement en développement de <strong style={{ color: "#818CF8" }}>JobGenius</strong>, une plateforme
+            J'ai conçu et livré <strong style={{ color: "#818CF8" }}>JobGenius</strong>, une plateforme
             intelligente de matching CV / offres d'emploi utilisant le traitement du langage naturel.
           </p>
           <p
@@ -865,7 +881,7 @@ const SkillsSection = memo(function SkillsSection({ sectionRef }) {
             <div style={{ fontSize: 13, color: "rgba(255,255,255,0.35)", fontFamily: "'Space Grotesk', sans-serif", marginBottom: 8 }}>
               Tech stack principal
             </div>
-            {["React", "Next.js", "TypeScript", "Flutter", "Node.js", "Docker", "AWS", "Figma"].map((t) => (
+            {["React", "Next.js", "TypeScript", "Flutter", "Node.js", "NestJS", "Supabase", "Docker", "AWS", "Figma"].map((t) => (
               <div
                 key={t}
                 style={{
@@ -893,7 +909,7 @@ const SkillsSection = memo(function SkillsSection({ sectionRef }) {
 
 const ExperienceSection = memo(function ExperienceSection({ sectionRef }) {
   const [active, setActive] = useState(0);
-  const exp = EXPERIENCES[active];
+  const exp = ALL_EXPERIENCES[active];
 
   return (
     <section ref={sectionRef} style={{ padding: "100px 2rem", maxWidth: 1100, margin: "0 auto" }}>
@@ -912,7 +928,7 @@ const ExperienceSection = memo(function ExperienceSection({ sectionRef }) {
           >
             Touchez une expérience pour afficher le détail.
           </div>
-          {EXPERIENCES.map((e, i) => (
+          {ALL_EXPERIENCES.map((e, i) => (
             <button
               key={e.company}
               onClick={() => setActive(i)}
@@ -1198,11 +1214,12 @@ const ProjectCard = memo(function ProjectCard({ project, onOpen, numberLabel }) 
 
 const ProjectModal = memo(function ProjectModal({ project, onClose }) {
   if (!project) return null;
-  const [lightboxSrc, setLightboxSrc] = useState(null);
+  // key : chaque projet monte une modale neuve, la lightbox repart donc fermée
+  return <ProjectModalContent key={project.id} project={project} onClose={onClose} />;
+});
 
-  useEffect(() => {
-    setLightboxSrc(null);
-  }, [project]);
+const ProjectModalContent = memo(function ProjectModalContent({ project, onClose }) {
+  const [lightboxSrc, setLightboxSrc] = useState(null);
 
   useEffect(() => {
     if (!lightboxSrc) return;
@@ -1389,6 +1406,8 @@ const ProjectModal = memo(function ProjectModal({ project, onClose }) {
           </div>
         )}
 
+        <ProjectExtraLinks project={project} />
+
         {lightboxSrc && (
           <div
             onClick={() => setLightboxSrc(null)}
@@ -1455,13 +1474,13 @@ const ProjectsSection = memo(function ProjectsSection({ sectionRef }) {
 
   const categories = useMemo(() => {
     const set = new Set();
-    for (const p of PROJECTS) set.add(p.category ?? "Autre");
+    for (const p of ALL_PROJECTS) set.add(p.category ?? "Autre");
     return ["Tous", ...Array.from(set)];
   }, []);
 
   const filteredProjects = useMemo(() => {
-    if (activeCategory === "Tous") return PROJECTS;
-    return PROJECTS.filter((p) => (p.category ?? "Autre") === activeCategory);
+    if (activeCategory === "Tous") return ALL_PROJECTS;
+    return ALL_PROJECTS.filter((p) => (p.category ?? "Autre") === activeCategory);
   }, [activeCategory]);
 
   return (
@@ -1790,6 +1809,7 @@ export default function Portfolio() {
       <SkillsSection sectionRef={competencesRef} />
       <ExperienceSection sectionRef={experiencesRef} />
       <ProjectsSection sectionRef={projetsRef} />
+      <GitContributionGraph />
       <ContactSection sectionRef={contactRef} />
 
       <footer

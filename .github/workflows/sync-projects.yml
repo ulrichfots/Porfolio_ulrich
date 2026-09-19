@@ -1,0 +1,62 @@
+name: Synchro IA des projets
+
+# Chaque lundi (ou à la demande) : récupère les dépôts GitHub/GitLab, génère les fiches par IA
+# et ouvre une Pull Request. Rien n'est publié sans relecture : Vercel crée une preview de la PR.
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Régénérer toutes les fiches non verrouillées"
+        type: boolean
+        default: false
+  schedule:
+    - cron: "0 6 * * 1"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-projects
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Synchroniser les projets
+        run: node scripts/sync-projects.mjs ${{ inputs.force && '--force' || '' }}
+        env:
+          # Les secrets ne peuvent pas commencer par GITHUB_ : on stocke le PAT sous GH_PAT
+          GITHUB_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GITLAB_USER_ID: ${{ vars.GITLAB_USER_ID }}
+          GITLAB_URL: ${{ vars.GITLAB_URL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          AI_MODEL: ${{ vars.AI_MODEL }}
+
+      - name: Ouvrir / mettre à jour la Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/sync-projects
+          delete-branch: true
+          add-paths: src/data/projects.generated.json
+          commit-message: "chore(projects): synchro IA des projets GitHub/GitLab"
+          title: "chore(projects): synchro IA des projets"
+          body: |
+            Fiches générées automatiquement par `scripts/sync-projects.mjs`.
+
+            Avant de merger :
+            - relis les textes dans la preview Vercel de cette PR ;
+            - `"hidden": true` pour masquer une fiche, `"locked": true` pour figer une fiche retouchée à la main.

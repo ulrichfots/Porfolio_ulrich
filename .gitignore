@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Secrets (tokens GitHub / GitLab / Anthropic)
+.env
+.env.*
+!.env.example
+
+# Instantanés Git régénérés à chaque build
+public/data/git-activity.json
+public/data/git-contributions.json
+
+# Vercel CLI
+.vercel

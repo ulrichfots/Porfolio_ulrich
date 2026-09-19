@@ -1,0 +1,301 @@
+/* Calendrier de contributions — palette du portfolio (#080812, #6366F1 → #8B5CF6, accent #818CF8) */
+.gc-section {
+  --gc-cell: 12px;
+  --gc-gap: 3px;
+  --gc-border: rgba(255, 255, 255, 0.07);
+  --gc-text: rgba(255, 255, 255, 0.88);
+  --gc-muted: rgba(255, 255, 255, 0.5);
+  --gc-faint: rgba(255, 255, 255, 0.32);
+  --gc-accent: #818cf8;
+  --gc-empty: rgba(255, 255, 255, 0.05);
+  --gc-l1: rgba(99, 102, 241, 0.32);
+  --gc-l2: rgba(99, 102, 241, 0.58);
+  --gc-l3: #6366f1;
+  --gc-l4: #a78bfa;
+  --gc-gitlab: #fc6d26;
+  --gc-font: "Space Grotesk", sans-serif;
+
+  padding: 0 2rem 40px;
+  font-family: var(--gc-font);
+}
+
+.gc-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 28px 22px;
+  border: 1px solid var(--gc-border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ─── En-tête ─── */
+.gc-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.gc-title {
+  margin: 0 0 6px;
+  font-size: 19px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+
+.gc-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: var(--gc-muted);
+}
+
+.gc-sources {
+  display: flex;
+  gap: 16px;
+  font-size: 12.5px;
+  color: var(--gc-muted);
+}
+
+.gc-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.gc-source strong {
+  color: var(--gc-text);
+  font-weight: 600;
+}
+
+.gc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.gc-dot--github {
+  background: var(--gc-accent);
+}
+
+.gc-dot--gitlab {
+  background: var(--gc-gitlab);
+}
+
+/* ─── Grille ─── */
+.gc-board {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.gc-weekdays {
+  list-style: none;
+  margin: 22px 0 0; /* aligné sous la ligne des mois */
+  padding: 0;
+  display: grid;
+  grid-template-rows: repeat(7, var(--gc-cell));
+  gap: var(--gc-gap);
+  flex-shrink: 0;
+}
+
+.gc-weekdays li {
+  font-size: 9.5px;
+  line-height: var(--gc-cell);
+  color: var(--gc-faint);
+}
+
+.gc-scroller {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+
+.gc-grid-wrap {
+  position: relative;
+  width: max-content;
+  padding-bottom: 2px;
+}
+
+.gc-months {
+  position: relative;
+  height: 20px;
+}
+
+.gc-month {
+  position: absolute;
+  top: 0;
+  left: calc(var(--gc-col) * (var(--gc-cell) + var(--gc-gap)));
+  font-size: 10px;
+  color: var(--gc-faint);
+  white-space: nowrap;
+}
+
+.gc-grid {
+  display: flex;
+  gap: var(--gc-gap);
+}
+
+.gc-week {
+  display: grid;
+  grid-template-rows: repeat(7, var(--gc-cell));
+  gap: var(--gc-gap);
+  animation: gc-column-in 0.4s ease both;
+  /* colonnes révélées de gauche à droite, plafonné pour rester rapide */
+  animation-delay: calc(min(var(--gc-col), 52) * 12ms);
+}
+
+.gc-day {
+  width: var(--gc-cell);
+  height: var(--gc-cell);
+  border-radius: 3px;
+  background: var(--gc-empty);
+  outline: 1px solid rgba(255, 255, 255, 0.02);
+  outline-offset: -1px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.gc-day--empty {
+  background: transparent;
+  outline: none;
+}
+
+.gc-day[data-level="1"] {
+  background: var(--gc-l1);
+}
+.gc-day[data-level="2"] {
+  background: var(--gc-l2);
+}
+.gc-day[data-level="3"] {
+  background: var(--gc-l3);
+}
+.gc-day[data-level="4"] {
+  background: var(--gc-l4);
+}
+
+.gc-day[data-label]:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+/* ─── Infobulle ─── */
+.gc-tooltip {
+  position: absolute;
+  z-index: 3;
+  transform: translate(-50%, calc(-100% - 8px));
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(13, 13, 31, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--gc-text);
+  font-size: 11.5px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  animation: gc-fade-in 0.15s ease both;
+}
+
+.gc-tooltip.is-below {
+  transform: translate(-50%, 8px);
+}
+
+/* ─── Pied ─── */
+.gc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  font-size: 11px;
+  color: var(--gc-faint);
+}
+
+.gc-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ─── États ─── */
+.gc-section.is-loading .gc-day {
+  animation: gc-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes gc-column-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gc-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gc-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .gc-section {
+    --gc-cell: 11px;
+  }
+}
+
+@media (max-width: 640px) {
+  .gc-section {
+    --gc-cell: 10px;
+    --gc-gap: 2.5px;
+    padding: 0 1rem 32px;
+  }
+
+  .gc-inner {
+    padding: 20px 16px 16px;
+  }
+
+  .gc-header {
+    align-items: flex-start;
+  }
+
+  .gc-title {
+    font-size: 17px;
+  }
+
+  .gc-tooltip {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gc-week,
+  .gc-tooltip,
+  .gc-section.is-loading .gc-day {
+    animation: none;
+  }
+
+  .gc-day[data-label]:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,345 @@
+/* Bannière d'activité Git — palette reprise du portfolio (fond #080812, dégradé #6366F1 → #8B5CF6, accent #818CF8) */
+.ga-banner {
+  --ga-bg: rgba(8, 8, 18, 0.72);
+  --ga-border: rgba(255, 255, 255, 0.07);
+  --ga-chip-bg: rgba(255, 255, 255, 0.03);
+  --ga-chip-border: rgba(255, 255, 255, 0.07);
+  --ga-text: rgba(255, 255, 255, 0.88);
+  --ga-muted: rgba(255, 255, 255, 0.5);
+  --ga-faint: rgba(255, 255, 255, 0.32);
+  --ga-accent: #6366f1;
+  --ga-accent-2: #8b5cf6;
+  --ga-accent-soft: #818cf8;
+  --ga-live: #10b981;
+  --ga-live-glow: rgba(16, 185, 129, 0.55);
+  --ga-gitlab: #fc6d26;
+  --ga-font: "Space Grotesk", sans-serif;
+  --ga-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --ga-height: 54px;
+  --ga-fade: 56px;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: stretch;
+  height: var(--ga-height);
+  border-top: 1px solid var(--ga-border);
+  background: var(--ga-bg);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  font-family: var(--ga-font);
+  text-align: left;
+  animation: ga-fade-in 0.7s ease both;
+}
+
+/* Filet lumineux en haut du bandeau */
+.ga-banner::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.55), rgba(139, 92, 246, 0.55), transparent);
+  pointer-events: none;
+}
+
+/* ─── Étiquette « Activité Git » ─── */
+.ga-label {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 18px 0 24px;
+  border-right: 1px solid var(--ga-border);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--ga-accent-soft);
+  white-space: nowrap;
+}
+
+.ga-live {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ga-faint);
+}
+
+.ga-live.is-active {
+  background: var(--ga-live);
+  animation: ga-pulse 2.2s ease-out infinite;
+}
+
+/* ─── Ruban défilant ─── */
+.ga-viewport {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--ga-fade), #000 calc(100% - var(--ga-fade)), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 var(--ga-fade), #000 calc(100% - var(--ga-fade)), transparent);
+}
+
+.ga-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 16px;
+  animation: ga-marquee var(--ga-duration, 60s) linear infinite;
+  will-change: transform;
+}
+
+.ga-banner:hover .ga-track,
+.ga-banner:focus-within .ga-track {
+  animation-play-state: paused;
+}
+
+/* margin (et non gap) : largeur totale = 2 × série, la boucle à -50 % tombe pile */
+.ga-item {
+  flex-shrink: 0;
+  margin-right: 12px;
+  animation: ga-item-in 0.55s ease both;
+  animation-delay: var(--ga-delay, 0ms);
+}
+
+.ga-chip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--ga-chip-bg);
+  border: 1px solid var(--ga-chip-border);
+  color: var(--ga-muted);
+  font-size: 12.5px;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+a.ga-chip:hover,
+a.ga-chip:focus-visible {
+  border-color: rgba(99, 102, 241, 0.45);
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--ga-text);
+  transform: translateY(-1px);
+}
+
+.ga-item.is-recent .ga-chip {
+  border-color: rgba(16, 185, 129, 0.28);
+  box-shadow: 0 0 18px -6px var(--ga-live-glow);
+}
+
+.ga-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  fill: rgba(255, 255, 255, 0.85);
+}
+
+.ga-icon--gitlab {
+  fill: var(--ga-gitlab);
+}
+
+.ga-repo {
+  color: var(--ga-text);
+  font-weight: 600;
+}
+
+.ga-repo.is-private {
+  color: var(--ga-accent-soft);
+}
+
+.ga-branch {
+  padding: 3px 7px;
+  border-radius: 5px;
+  background: rgba(99, 102, 241, 0.12);
+  color: var(--ga-accent-soft);
+  font-family: var(--ga-mono);
+  font-size: 10.5px;
+}
+
+.ga-message {
+  max-width: 40ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ga-time {
+  color: var(--ga-faint);
+  font-size: 11.5px;
+}
+
+.ga-time::before {
+  content: "·";
+  margin-right: 8px;
+}
+
+.ga-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ga-live);
+  animation: ga-pulse 2.2s ease-out infinite;
+}
+
+.ga-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ─── Squelette de chargement ─── */
+.ga-skeleton {
+  display: flex;
+  gap: 12px;
+  padding-left: 16px;
+}
+
+.ga-skeleton-pill {
+  display: block;
+  height: 28px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.03) 100%);
+  background-size: 200% 100%;
+  animation: ga-shimmer 1.6s ease-in-out infinite;
+}
+
+/* ─── Animations ─── */
+@keyframes ga-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes ga-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ga-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ga-pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--ga-live-glow);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+@keyframes ga-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ─── Responsive ─── */
+
+/* Mobile, ou écran peu haut : le bandeau passe dans le flux, sous le contenu du hero, bord à bord */
+@media (max-width: 640px), (max-height: 640px) {
+  .ga-banner {
+    position: relative;
+    align-self: stretch;
+    margin: 44px -2rem 0;
+    border-bottom: 1px solid var(--ga-border);
+  }
+}
+
+@media (max-width: 900px) {
+  .ga-message {
+    max-width: 30ch;
+  }
+}
+
+@media (max-width: 640px) {
+  .ga-banner {
+    --ga-height: 50px;
+    --ga-fade: 28px;
+  }
+
+  .ga-label {
+    padding: 0 12px 0 16px;
+  }
+
+  .ga-label-text {
+    display: none;
+  }
+
+  .ga-chip {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+
+  .ga-message {
+    max-width: 22ch;
+  }
+}
+
+/* Accessibilité : pas de mouvement automatique, défilement manuel à la place */
+@media (prefers-reduced-motion: reduce) {
+  .ga-banner,
+  .ga-item,
+  .ga-live.is-active,
+  .ga-pulse,
+  .ga-skeleton-pill,
+  .ga-track {
+    animation: none;
+  }
+
+  .ga-viewport {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .ga-item[aria-hidden="true"] {
+    display: none;
+  }
+
+  a.ga-chip:hover {
+    transform: none;
+  }
+}

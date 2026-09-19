@@ -1,0 +1,17 @@
+{
+  "github": { "enabled": true, "includeContributions": true },
+  "gitlab": { "enabled": true, "includeContributions": true },
+  "includeForks": false,
+  "includeArchived": false,
+  "maxRepos": 25,
+  "exclude": [
+    "github:ulrichfots/Porfolio_ulrich",
+    "github:ulrichfots/portfolio"
+  ],
+  "includePrivate": [],
+  "linkToManual": {
+    "gitlab:moza72267-group/jobgenius": "https://jobgenius-ai.com/",
+    "gitlab:projet_amenouv-v/dashboard_auto_ecole": "https://dashboard-amenouveve.auto-ecole-amenouveve.com",
+    "gitlab:salon-massage-app/massage-front": "https://www.davidmassagereset.fr"
+  }
+}
