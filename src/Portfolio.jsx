@@ -601,10 +601,10 @@ const AboutSection = memo(function AboutSection({ sectionRef }) {
               fontFamily: "'Space Grotesk', sans-serif",
             }}
           >
-            Développeur Full Stack, diplômé d'un{" "}
-            <strong style={{ color: "#818CF8" }}>Master Expert Digital — Architecte Web & Mobile</strong> à l'IEF2I,
-            je conçois et déploie des applications web et mobiles de bout en bout, avec un focus sur la qualité,
-            la performance et l'expérience utilisateur.
+            Développeur Full Stack & Mobile, diplômé d'un{" "}
+            <strong style={{ color: "#818CF8" }}>Master Expert Digital — Architecte Web & Mobile</strong> à l'IEF2I.
+            Je conçois des produits de bout en bout : du cadrage sur Figma jusqu'à la mise en production, en passant
+            par le web, le mobile et l'infrastructure qui les fait tourner.
           </p>
           <p
             style={{
@@ -615,9 +615,10 @@ const AboutSection = memo(function AboutSection({ sectionRef }) {
               fontFamily: "'Space Grotesk', sans-serif",
             }}
           >
-            Côté développement, je maîtrise l'implémentation frontend (React / Next.js) et la construction de services
-            backend (Node.js / APIs), ainsi que le déploiement (Docker, CI/CD, VPS/Cloud). J'accorde une attention
-            particulière à la maintenabilité (design system, composants) et aux performances (chargement, UX).
+            Je porte <strong style={{ color: "#818CF8" }}>lijob.fr</strong> de bout en bout : produit, architecture,
+            développement et mise en production. En parallèle, j'accompagne des clients — tnvj.fr,
+            chantierpro-ultra.com, David Massage Reset — sur l'architecture de leur plateforme, leur pipeline CI/CD
+            et l'environnement de préproduction qui sécurise chaque mise en ligne.
           </p>
           <p
             style={{
@@ -627,8 +628,9 @@ const AboutSection = memo(function AboutSection({ sectionRef }) {
               fontFamily: "'Space Grotesk', sans-serif",
             }}
           >
-            J'ai conçu et livré <strong style={{ color: "#818CF8" }}>JobGenius</strong>, une plateforme
-            intelligente de matching CV / offres d'emploi utilisant le traitement du langage naturel.
+            Au quotidien : React / Next.js et TypeScript côté interface, Node.js et NestJS côté API — documentées
+            avec Swagger — sur PostgreSQL, Supabase ou Neon. Pour la livraison : Docker, GitLab CI/CD, VPS OVH et
+            Vercel. Je soigne autant la maintenabilité (design system, composants) que les performances.
           </p>
           <p
             style={{
@@ -639,8 +641,9 @@ const AboutSection = memo(function AboutSection({ sectionRef }) {
               fontFamily: "'Space Grotesk', sans-serif",
             }}
           >
-            En complément, je conçois aussi des interfaces sur <strong style={{ color: "#818CF8" }}>Figma</strong> pour
-            cadrer rapidement une direction UI/UX avant l'implémentation.
+            J'ai conçu et livré <strong style={{ color: "#818CF8" }}>JobGenius</strong>, une plateforme de matching
+            CV / offres d'emploi basée sur le traitement du langage naturel, ainsi que l'application mobile Flutter
+            du Groupe Y-KL. Et je dessine mes interfaces sur Figma avant d'écrire la première ligne de code.
           </p>
           <div style={{ marginTop: 32, display: "flex", gap: 12 }}>
             <a href="https://www.linkedin.com/in/ulrich-fotso-616829254?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BgQUGpmL%2BSgivZvY%2BNDJusw%3D%3D" target="_blank" rel="noreferrer" style={socialBtn}>
