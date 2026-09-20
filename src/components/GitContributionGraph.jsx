@@ -81,8 +81,13 @@ function monthLabels(weeks) {
   return labels;
 }
 
-const GitContributionGraph = memo(function GitContributionGraph() {
-  const [state, setState] = useState({ status: "loading", data: null });
+const isFresh = (data) => Date.now() - (Date.parse(data?.generatedAt) || 0) < REFRESH_MS;
+
+const GitContributionGraph = memo(function GitContributionGraph({ initialData = null }) {
+  // Le calendrier ne manipule que des dates absolues : le rendu serveur est reproductible tel quel
+  const [state, setState] = useState(() =>
+    Array.isArray(initialData?.days) ? { status: "ready", data: initialData } : { status: "loading", data: null }
+  );
   const [tip, setTip] = useState(null);
   const scrollerRef = useRef(null);
 
@@ -98,13 +103,16 @@ const GitContributionGraph = memo(function GitContributionGraph() {
           setState((prev) => (prev.status === "ready" ? prev : { ...prev, status: "error" }));
         });
     };
-    load();
+
+    // Données déjà rendues par le serveur et encore fraîches : aucun appel réseau
+    if (!initialData || !isFresh(initialData)) load();
+
     const refresh = setInterval(load, REFRESH_MS);
     return () => {
       controller?.abort();
       clearInterval(refresh);
     };
-  }, []);
+  }, [initialData]);
 
   const data = state.data;
   const weeks = useMemo(() => buildWeeks(data?.days ?? []), [data]);

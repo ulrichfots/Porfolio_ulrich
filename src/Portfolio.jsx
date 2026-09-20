@@ -1,3 +1,5 @@
+"use client";
+
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import GitActivityBanner from "./components/GitActivityBanner.jsx";
 import GitContributionGraph from "./components/GitContributionGraph.jsx";
@@ -416,7 +418,7 @@ const NavBar = memo(function NavBar({ active, onNav }) {
   );
 });
 
-const HeroSection = memo(function HeroSection({ sectionRef }) {
+const HeroSection = memo(function HeroSection({ sectionRef, initialActivity }) {
   return (
     <section
       ref={sectionRef}
@@ -581,7 +583,7 @@ const HeroSection = memo(function HeroSection({ sectionRef }) {
         </div>
       </div>
 
-      <GitActivityBanner />
+      <GitActivityBanner initialData={initialActivity} />
     </section>
   );
 });
@@ -1721,7 +1723,9 @@ const SectionTitle = memo(function SectionTitle({ label, title, centered }) {
   );
 });
 
-export default function Portfolio() {
+// initialActivity / initialContributions : données rendues côté serveur par app/page.jsx.
+// Absentes (build Vite), les composants les récupèrent eux-mêmes depuis le navigateur.
+export default function Portfolio({ initialActivity = null, initialContributions = null }) {
   const [activeSection, setActiveSection] = useState("Accueil");
 
   const accueilRef = useRef(null);
@@ -1807,12 +1811,12 @@ export default function Portfolio() {
 
       <NavBar active={activeSection} onNav={scrollTo} />
 
-      <HeroSection sectionRef={accueilRef} />
+      <HeroSection sectionRef={accueilRef} initialActivity={initialActivity} />
       <AboutSection sectionRef={aProposRef} />
       <SkillsSection sectionRef={competencesRef} />
       <ExperienceSection sectionRef={experiencesRef} />
       <ProjectsSection sectionRef={projetsRef} />
-      <GitContributionGraph />
+      <GitContributionGraph initialData={initialContributions} />
       <ContactSection sectionRef={contactRef} />
 
       <footer

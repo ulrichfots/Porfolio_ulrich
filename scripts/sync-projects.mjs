@@ -15,7 +15,8 @@ import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { PROMPT_VERSION, createAiClient, generateProjectSheet, isFatalAiError } from "../server/ai.js";
-import { loadLocalEnv, readAiEnv, readGitEnv } from "../server/env.js";
+import { readAiEnv, readGitEnv } from "../server/env.js";
+import { loadLocalEnv } from "../server/loadLocalEnv.js";
 import { createGitHubClient } from "../server/github.js";
 import { createGitLabClient } from "../server/gitlab.js";
 

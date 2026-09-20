@@ -1,19 +1,3 @@
-import { existsSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-
-const ROOT = fileURLToPath(new URL("..", import.meta.url));
-
-/**
- * Charge .env.local puis .env (usage local / scripts).
- * Les variables déjà définies (Vercel, GitHub Actions) ne sont jamais écrasées.
- */
-export function loadLocalEnv() {
-  for (const file of [".env.local", ".env"]) {
-    const fullPath = `${ROOT}${file}`;
-    if (existsSync(fullPath)) process.loadEnvFile(fullPath);
-  }
-}
-
 const PRIVACY_MODES = ["anonymize", "exclude", "show"];
 
 function toInt(value, fallback, min, max) {

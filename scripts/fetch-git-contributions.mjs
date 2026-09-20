@@ -7,7 +7,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadLocalEnv } from "../server/env.js";
+import { loadLocalEnv } from "../server/loadLocalEnv.js";
 import { fetchGitContributions } from "../server/gitContributions.js";
 
 const OUTPUT = fileURLToPath(new URL("../public/data/git-contributions.json", import.meta.url));

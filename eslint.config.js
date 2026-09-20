@@ -5,7 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', '.next']),
   {
     files: ['**/*.{js,jsx}'],
     extends: [
@@ -27,8 +27,14 @@ export default defineConfig([
     },
   },
   {
+    // Fichiers spéciaux de l'App Router : ils exportent aussi `metadata` / `viewport`
+    files: ['app/**/*.jsx'],
+    rules: { 'react-refresh/only-export-components': 'off' },
+  },
+  {
     // Code Node : fonction Vercel, modules serveur et scripts de synchro
-    files: ['api/**/*.js', 'server/**/*.js', 'scripts/**/*.{js,mjs}'],
+    // `app/**` inclut les composants serveur de l'App Router, qui lisent process.env
+    files: ['api/**/*.js', 'app/**/*.{js,jsx}', 'server/**/*.js', 'scripts/**/*.{js,mjs}'],
     extends: [js.configs.recommended],
     languageOptions: {
       ecmaVersion: 'latest',

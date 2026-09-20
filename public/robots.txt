@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: /sitemap.xml
-
+Sitemap: https://porfolio-ulrich.vercel.app/sitemap.xml

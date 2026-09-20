@@ -9,22 +9,26 @@ const RECENT_MS = 24 * 60 * 60 * 1000;
 const SECONDS_PER_ITEM = 5;
 const MIN_LOOP_ITEMS = 8;
 
-const rtf = new Intl.RelativeTimeFormat("fr", { numeric: "auto", style: "short" });
-const UNITS = [
-  ["year", 31536000],
-  ["month", 2592000],
-  ["week", 604800],
-  ["day", 86400],
-  ["hour", 3600],
-  ["minute", 60],
-];
-
+/**
+ * Formatage maison plutôt qu'Intl.RelativeTimeFormat : Node et les navigateurs n'embarquent pas
+ * la même version d'ICU (espace insécable côté Chrome), ce qui casserait l'hydratation.
+ */
 function timeAgo(iso, now) {
-  const diff = (Date.parse(iso) - now) / 1000;
-  for (const [unit, seconds] of UNITS) {
-    if (Math.abs(diff) >= seconds) return rtf.format(Math.round(diff / seconds), unit);
-  }
-  return "à l'instant";
+  const seconds = Math.max(0, Math.round((now - Date.parse(iso)) / 1000));
+  if (seconds < 60) return "à l'instant";
+  const minutes = Math.round(seconds / 60);
+  if (minutes < 60) return `il y a ${minutes} min`;
+  const hours = Math.round(minutes / 60);
+  if (hours < 24) return `il y a ${hours} h`;
+  const days = Math.round(hours / 24);
+  if (days === 1) return "hier";
+  if (days < 7) return `il y a ${days} j`;
+  const weeks = Math.round(days / 7);
+  if (weeks < 5) return `il y a ${weeks} sem.`;
+  const months = Math.round(days / 30);
+  if (months < 12) return `il y a ${months} mois`;
+  const years = Math.round(days / 365);
+  return years <= 1 ? "il y a 1 an" : `il y a ${years} ans`;
 }
 
 const loadActivity = (signal) =>
@@ -87,8 +91,19 @@ const ActivityItem = memo(function ActivityItem({ item, now, index, clone }) {
   );
 });
 
-const GitActivityBanner = memo(function GitActivityBanner() {
-  const [state, setState] = useState({ status: "loading", items: [], now: 0 });
+/**
+ * Premier rendu identique côté serveur et côté navigateur : l'heure de référence est celle
+ * de la génération des données, jamais `Date.now()`, qui provoquerait un écart d'hydratation.
+ */
+function initialState(initialData) {
+  if (!Array.isArray(initialData?.items)) return { status: "loading", items: [], now: 0 };
+  return { status: "ready", items: initialData.items, now: Date.parse(initialData.generatedAt) || 0 };
+}
+
+const isFresh = (data) => Date.now() - (Date.parse(data?.generatedAt) || 0) < REFRESH_MS;
+
+const GitActivityBanner = memo(function GitActivityBanner({ initialData = null }) {
+  const [state, setState] = useState(() => initialState(initialData));
 
   useEffect(() => {
     let controller;
@@ -102,13 +117,20 @@ const GitActivityBanner = memo(function GitActivityBanner() {
           setState((prev) => (prev.status === "ready" ? prev : { ...prev, status: "error" }));
         });
     };
-    load();
+
+    // Données déjà rendues par le serveur et encore fraîches : aucun appel réseau,
+    // on recale seulement les durées relatives sur l'heure réelle du visiteur.
+    const skipFirstLoad = initialData && isFresh(initialData);
+    const settle = skipFirstLoad ? setTimeout(() => setState((prev) => ({ ...prev, now: Date.now() })), 0) : null;
+    if (!skipFirstLoad) load();
+
     const refresh = setInterval(load, REFRESH_MS);
     return () => {
       controller?.abort();
+      clearTimeout(settle);
       clearInterval(refresh);
     };
-  }, []);
+  }, [initialData]);
 
   const { items, now } = state;
 

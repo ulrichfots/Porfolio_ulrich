@@ -4,9 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "next dev",
+    "build": "next build",
     "lint": "eslint .",
+    "start": "next start",
+    "dev:vite": "vite",
+    "build:vite": "vite build",
     "preview": "vite preview",
     "prebuild": "npm run sync:activity && npm run sync:contributions",
     "sync:activity": "node scripts/fetch-git-activity.mjs",
@@ -14,6 +17,7 @@
     "sync:projects": "node scripts/sync-projects.mjs"
   },
   "dependencies": {
+    "next": "^16.3.5",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
