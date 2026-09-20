@@ -2,6 +2,29 @@
 
 export const RECENT_PROJECTS = [
   {
+    id: 11,
+    title: "ChantierPro Ultra",
+    category: "SaaS",
+    status: "En ligne",
+    statusColor: "#10B981",
+    description:
+      "Lead technique d'un SaaS de gestion de chantiers BTP : 100 % du frontend Next.js, 80 % du backend NestJS et toute la chaîne de livraison.",
+    longDesc:
+      "Plateforme SaaS destinée aux entreprises du BTP, couvrant la gestion des chantiers, le planning Gantt, les devis et factures, la GED, la paie BTP avec DSN et le QHSE. En tant que lead technique, j'ai défini l'architecture et piloté le développement sous Jira : 100 % du frontend Next.js et 80 % du backend NestJS, les traitements longs étant déportés dans des files BullMQ/Redis, les documents et médias stockés sur Cloudflare R2, la génération de documents assurée par Puppeteer et le traitement média par ffmpeg. J'ai également mis en place les environnements de préproduction et de production, le pipeline CI/CD, les sauvegardes et les scans de sécurité.",
+    tech: ["Next.js", "NestJS", "BullMQ / Redis", "Cloudflare R2", "Puppeteer", "ffmpeg", "Docker", "CI/CD"],
+    // TODO (Ulrich) : remplacer par 2 ou 3 défis techniques concrets vécus sur le projet,
+    // et préciser les parties serveur faites dans Next.js (server actions, route handlers, middleware, auth).
+    challenges:
+      "Faire cohabiter des métiers très différents dans une seule application (planning, facturation, paie BTP avec DSN, QHSE), tout en sortant du cycle requête/réponse les traitements lourds comme la génération de documents et le traitement des médias.",
+    solutions:
+      "Découpage du backend NestJS en modules métier, traitements longs déportés dans des files BullMQ/Redis, génération documentaire via Puppeteer et média via ffmpeg, stockage sur Cloudflare R2, avec préproduction, CI/CD, sauvegardes et scans de vulnérabilités pour sécuriser chaque mise en production.",
+    icon: "🏢",
+    color: "#6366F1",
+    link: "https://chantierpro-ultra.com",
+    screenshots: [],
+    featured: true,
+  },
+  {
     id: 10,
     title: "tnvj.fr",
     category: "DevOps",
@@ -19,26 +42,6 @@ export const RECENT_PROJECTS = [
     icon: "🏗️",
     color: "#8B5CF6",
     link: "https://tnvj.fr",
-    screenshots: [],
-  },
-  {
-    id: 11,
-    title: "chantierpro-ultra.com",
-    category: "DevOps",
-    status: "En ligne",
-    statusColor: "#10B981",
-    description:
-      "Architecture complète, déploiement continu (CI/CD) et environnement de préproduction configuré.",
-    longDesc:
-      "Mise en place de l'architecture complète de la plateforme et d'une chaîne de déploiement continu : chaque modification validée est testée en préproduction puis déployée automatiquement, pour des mises en ligne fréquentes et maîtrisées.",
-    tech: ["Architecture", "CI/CD", "Déploiement continu", "Préproduction"],
-    challenges:
-      "Garantir des déploiements fréquents et reproductibles tout en gardant la production stable.",
-    solutions:
-      "Déploiement continu automatisé et environnement de préproduction configuré à l'identique de la production pour fiabiliser chaque mise en ligne.",
-    icon: "🚧",
-    color: "#0EA5E9",
-    link: "https://chantierpro-ultra.com",
     screenshots: [],
   },
   {
@@ -106,6 +109,24 @@ export const RECENT_PROJECTS = [
 
 export const RECENT_EXPERIENCES = [
   {
+    company: "ChantierPro Ultra",
+    role: "Lead technique",
+    type: "Mission",
+    period: "Mai 2026 — Aujourd'hui",
+    location: "France",
+    color: "#6366F1",
+    logo: "CP",
+    highlights: [
+      "Définition de l'architecture du SaaS et pilotage du développement sous Jira",
+      "Développement de 100 % du frontend Next.js et de 80 % du backend NestJS",
+      "Modules métier : chantiers, planning Gantt, devis et factures, GED, paie BTP avec DSN, QHSE",
+      "Traitements longs déportés dans des files BullMQ/Redis, stockage Cloudflare R2, documents via Puppeteer et médias via ffmpeg",
+      "Mise en place des environnements de préproduction et de production, du pipeline CI/CD, des sauvegardes et des scans de vulnérabilités",
+    ],
+    stack: ["Next.js", "NestJS", "BullMQ / Redis", "Cloudflare R2", "Docker", "GitLab CI/CD"],
+    link: "https://chantierpro-ultra.com",
+  },
+  {
     company: "lijob.fr",
     role: "CEO / CTO",
     type: "Dirigeant",
@@ -132,7 +153,6 @@ export const RECENT_EXPERIENCES = [
     logo: "FL",
     highlights: [
       "tnvj.fr : architecture complète, pipeline CI/CD robuste et gestion d'un environnement de préproduction",
-      "chantierpro-ultra.com : architecture complète, déploiement continu (CI/CD) et préproduction configurée",
       "David Massage Reset : développement du site vitrine et de son interface d'administration dédiée",
     ],
     stack: ["Architecture", "CI/CD", "Préproduction", "Déploiement continu", "Administration"],

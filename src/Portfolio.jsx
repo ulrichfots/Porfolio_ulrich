@@ -18,9 +18,12 @@ const SKILLS = {
     { name: "Flutter / React Native", level: 80 },
     { name: "Angular / Vue.js", level: 72 },
   ],
+  // Les pourcentages sont indicatifs : ajuste-les librement.
   Backend: [
     { name: "Node.js / Express", level: 85 },
-    { name: "NestJS", level: 80 },
+    { name: "NestJS", level: 82 },
+    { name: "BullMQ / Redis", level: 76 },
+    { name: "Puppeteer / ffmpeg", level: 72 },
     { name: "Django / Flask", level: 70 },
     { name: "Symfony / PHP", level: 65 },
     { name: "REST API", level: 88 },
@@ -30,9 +33,12 @@ const SKILLS = {
     { name: "Docker / CI-CD", level: 78 },
     { name: "AWS (EC2, Lambda)", level: 72 },
     { name: "Microsoft Azure", level: 68 },
+    { name: "GitLab CI/CD auto-hébergé", level: 80 },
     { name: "GitLab / Git", level: 90 },
     { name: "Grafana / Prometheus", level: 65 },
     { name: "VPS OVH", level: 75 },
+    { name: "Cloudflare R2", level: 72 },
+    { name: "Scans de vulnérabilités (HostedScan)", level: 65 },
   ],
   "Bases de données": [
     { name: "PostgreSQL / MySQL", level: 82 },
@@ -63,6 +69,7 @@ const EXPERIENCES = [
       "Conception d'un algorithme de matching CV / offres d'emploi (scoring, pondération, itérations)",
       "Développement d'un pipeline de parsing et d'analyse sémantique de CV (extraction, normalisation)",
       "Intégration d'APIs de jobboards et gestion de la fiabilité (erreurs, retries, limites)",
+      "Développement du site institutionnel React de l'entreprise",
       "Optimisation des performances et de l'expérience utilisateur (temps de chargement, parcours)",
     ],
     stack: ["React", "Node.js", "NLP / Matching", "API REST", "PostgreSQL"],
@@ -78,12 +85,13 @@ const EXPERIENCES = [
     highlights: [
       "Analyse des besoins métiers, cadrage des fonctionnalités et priorisation avec les équipes",
       "Développement de l'application mobile Flutter (écrans, navigation, intégrations, qualité)",
-      "Automatisation de processus via Power Automate / Power Platform (gains de temps opérationnels)",
+      "Automatisation de processus via Power Apps / Power Automate / Dataverse, intégrés à Microsoft 365",
+      "Rédaction de la documentation et formation des utilisateurs aux outils livrés",
       "Mise en place d'une approche qualité (tests manuels, recettes, corrections, suivi)",
       "Conception UI/UX sur Figma pour cadrer les parcours avant implémentation",
       "Développement du site vitrine en React (mise en production, responsive, maintenance)",
       ],
-    stack: ["Flutter", "React", "Figma", "Power Platform", "Microsoft 365"],
+    stack: ["Flutter", "React", "Figma", "Power Platform", "Dataverse", "Microsoft 365"],
     link: "https://y-kl.fr",
   },
   {
@@ -617,10 +625,11 @@ const AboutSection = memo(function AboutSection({ sectionRef }) {
               fontFamily: "'Space Grotesk', sans-serif",
             }}
           >
-            Je porte <strong style={{ color: "#818CF8" }}>lijob.fr</strong> de bout en bout : produit, architecture,
-            développement et mise en production. En parallèle, j'accompagne des clients comme tnvj.fr,
-            chantierpro-ultra.com ou David Massage Reset sur l'architecture de leur plateforme, leur pipeline CI/CD
-            et l'environnement de préproduction qui sécurise chaque mise en ligne.
+            Je suis <strong style={{ color: "#818CF8" }}>lead technique de ChantierPro Ultra</strong>, un SaaS de
+            gestion de chantiers BTP : architecture, pilotage sous Jira, 100 % du frontend Next.js, 80 % du backend
+            NestJS et toute la chaîne de livraison. Je porte également{" "}
+            <strong style={{ color: "#818CF8" }}>lijob.fr</strong> de bout en bout, et j'accompagne des clients comme
+            tnvj.fr ou David Massage Reset sur leur architecture, leur pipeline CI/CD et leur préproduction.
           </p>
           <p
             style={{
@@ -774,6 +783,60 @@ const AboutSection = memo(function AboutSection({ sectionRef }) {
                   }}
                 >
                   <span style={{ color: "#10B981", flexShrink: 0 }}>✓</span> {c}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div
+            style={{
+              background: "rgba(255,255,255,0.03)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              borderLeft: "3px solid #D97757",
+              borderRadius: 12,
+              padding: "20px 24px",
+              marginTop: 16,
+            }}
+          >
+            <div
+              style={{
+                fontSize: 12,
+                color: "rgba(255,255,255,0.35)",
+                fontFamily: "'Space Grotesk', sans-serif",
+                marginBottom: 6,
+              }}
+            >
+              Formation complémentaire — 2026
+            </div>
+            <div
+              style={{
+                fontWeight: 600,
+                color: "#fff",
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: 15,
+                marginBottom: 8,
+              }}
+            >
+              Certifications Anthropic
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+              {[
+                "Introduction to Agent Skills",
+                "Building with the Claude API",
+                "Introduction to Model Context Protocol",
+                "Claude Code in Action",
+              ].map((c, i) => (
+                <div
+                  key={i}
+                  style={{
+                    fontSize: 12,
+                    color: "rgba(255,255,255,0.55)",
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    display: "flex",
+                    gap: 8,
+                  }}
+                >
+                  <span style={{ color: "#D97757", flexShrink: 0 }}>✓</span> {c}
                 </div>
               ))}
             </div>
