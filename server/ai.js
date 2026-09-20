@@ -29,6 +29,7 @@ const SYSTEM_PROMPT = `Tu rédiges les fiches projets du portfolio d'Ulrich Fots
 
 Règles :
 - Ton professionnel, concret, orienté résultat. Phrases courtes, sans superlatifs creux ni emojis.
+- N'utilise jamais de tiret cadratin (—) dans une phrase : préfère une virgule, une parenthèse ou deux phrases.
 - N'invente rien : aucune fonctionnalité, techno, métrique ou client absents des données. Si l'information manque, reste sobre et générique.
 - "tech" : uniquement des technologies visibles dans les données (langages, frameworks, outils CI/CD, bases de données), avec leurs noms officiels (ex. "Node.js", "GitLab CI/CD").
 - Si le dépôt est une contribution à un projet tiers, décris l'apport d'Ulrich d'après ses commits.

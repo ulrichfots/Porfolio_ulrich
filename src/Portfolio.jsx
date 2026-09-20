@@ -590,7 +590,7 @@ const AboutSection = memo(function AboutSection({ sectionRef }) {
   return (
     <section ref={sectionRef} className="section-pad" style={{ padding: "100px 2rem", maxWidth: 1100, margin: "0 auto" }}>
       <SectionTitle label="01" title="À propos" />
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "start" }}>
         <div>
           <p
             style={{
@@ -616,8 +616,8 @@ const AboutSection = memo(function AboutSection({ sectionRef }) {
             }}
           >
             Je porte <strong style={{ color: "#818CF8" }}>lijob.fr</strong> de bout en bout : produit, architecture,
-            développement et mise en production. En parallèle, j'accompagne des clients — tnvj.fr,
-            chantierpro-ultra.com, David Massage Reset — sur l'architecture de leur plateforme, leur pipeline CI/CD
+            développement et mise en production. En parallèle, j'accompagne des clients comme tnvj.fr,
+            chantierpro-ultra.com ou David Massage Reset sur l'architecture de leur plateforme, leur pipeline CI/CD
             et l'environnement de préproduction qui sécurise chaque mise en ligne.
           </p>
           <p
@@ -628,8 +628,8 @@ const AboutSection = memo(function AboutSection({ sectionRef }) {
               fontFamily: "'Space Grotesk', sans-serif",
             }}
           >
-            Au quotidien : React / Next.js et TypeScript côté interface, Node.js et NestJS côté API — documentées
-            avec Swagger — sur PostgreSQL, Supabase ou Neon. Pour la livraison : Docker, GitLab CI/CD, VPS OVH et
+            Au quotidien : React / Next.js et TypeScript côté interface, Node.js et NestJS côté API, documentées
+            avec Swagger, sur PostgreSQL, Supabase ou Neon. Pour la livraison : Docker, GitLab CI/CD, VPS OVH et
             Vercel. Je soigne autant la maintenabilité (design system, composants) que les performances.
           </p>
           <p

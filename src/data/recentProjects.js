@@ -131,9 +131,9 @@ export const RECENT_EXPERIENCES = [
     color: "#8B5CF6",
     logo: "FL",
     highlights: [
-      "tnvj.fr — Architecture complète, pipeline CI/CD robuste et gestion d'un environnement de préproduction",
-      "chantierpro-ultra.com — Architecture complète, déploiement continu (CI/CD) et préproduction configurée",
-      "David Massage Reset — Développement du site vitrine et de son interface d'administration dédiée",
+      "tnvj.fr : architecture complète, pipeline CI/CD robuste et gestion d'un environnement de préproduction",
+      "chantierpro-ultra.com : architecture complète, déploiement continu (CI/CD) et préproduction configurée",
+      "David Massage Reset : développement du site vitrine et de son interface d'administration dédiée",
     ],
     stack: ["Architecture", "CI/CD", "Préproduction", "Déploiement continu", "Administration"],
   },
