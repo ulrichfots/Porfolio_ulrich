@@ -1,6 +1,34 @@
 {
-  "generatedAt": null,
-  "model": null,
+  "generatedAt": "2026-09-21T11:23:00.443Z",
+  "model": "claude-opus-5",
   "promptVersion": 1,
-  "projects": []
+  "projects": [
+    {
+      "id": "gitlab:salon-massage-app/massage-front",
+      "manualLink": "https://www.davidmassagereset.fr",
+      "repo": "https://gitlab.com/salon-massage-app/massage-front",
+      "source": "gitlab",
+      "pushedAt": "2026-06-20T01:12:37.078Z",
+      "generated": true,
+      "locked": false
+    },
+    {
+      "id": "gitlab:projet_amenouv-v/dashboard_auto_ecole",
+      "manualLink": "https://dashboard-amenouveve.auto-ecole-amenouveve.com",
+      "repo": "https://gitlab.com/projet_amenouv-v/dashboard_auto_ecole",
+      "source": "gitlab",
+      "pushedAt": "2026-05-29T14:22:55.737Z",
+      "generated": true,
+      "locked": false
+    },
+    {
+      "id": "gitlab:moza72267-group/jobgenius",
+      "manualLink": "https://jobgenius-ai.com/",
+      "repo": "https://gitlab.com/moza72267-group/jobgenius",
+      "source": "gitlab",
+      "pushedAt": "2026-04-14T12:01:38.623Z",
+      "generated": true,
+      "locked": false
+    }
+  ]
 }
